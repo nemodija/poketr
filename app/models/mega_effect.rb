@@ -1,0 +1,2 @@
+class MegaEffect < ApplicationRecord
+end
