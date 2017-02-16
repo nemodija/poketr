@@ -23,30 +23,12 @@ Things you may want to cover:
 
 * ...
 
-~~~
-rails new poketr -d mysql
-cd poketr
-
-rails g controller pokemons index
-rails g model mega_effect name:string note:string
-rails g model ability name:string note:string
-rails g model type name:string
-rails g model pokemon dex:integer name:string type:references attack:integer ability:references mega_effect:references
-~~~
 
 ~~~
 bundle install --path vendor/bundler
 ~~~
 
-mysql
-
 ~~~
-create database poketr_development;
-~~~
-
-~~~
-bundle exec rake db:migrate RAILS_ENV=development
-bundle exec rake db:seed RAILS_ENV=development
-
-bundle exec rails s
+bundle exec rake db:drop db:create db:schema:load db:seed_fu
+bundle exec rake db:migrate:reset
 ~~~
