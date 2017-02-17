@@ -30,5 +30,6 @@ bundle install --path vendor/bundler
 
 ~~~
 bundle exec rake db:drop db:create db:schema:load db:seed_fu
+bundle exec rake db:drop db:create db:schema:load db:seed_fu RAILS_ENV=test
 bundle exec rake db:migrate:reset
 ~~~
