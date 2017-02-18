@@ -14,4 +14,21 @@ class Pokemon < ApplicationRecord
   def mega_evolution?
     self.mega_effects.size > 0
   end
+
+  def self.to_csv
+    CSV.generate(encoding: Encoding::SJIS) do |csv|
+      csv << csv_column_names
+      all.each do |p|
+        csv << p.csv_column_values
+      end
+    end
+  end
+
+  def self.csv_column_names
+    ['ばんごう', 'なまえ', '', 'タイプ', '能力']
+  end
+
+  def csv_column_values
+    [dex, name, series, type.name, default_ability.name]
+  end
 end
