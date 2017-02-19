@@ -1,3 +1,9 @@
+# == Route Map
+#
+#         Prefix Verb URI Pattern               Controller#Action
+# pokemons_index GET  /pokemons/index(.:format) pokemons#index
+#
+
 Rails.application.routes.draw do
   get 'pokemons/index'
 
