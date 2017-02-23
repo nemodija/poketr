@@ -1,6 +1,44 @@
 h1
-  | Pokemons#index
-p
-  | Find me in app/views/pokemons/index.html.erb
-p
-  = button_to "CSV", pokemons_index_path(format: "csv"), :method => :get
+  | Poketr
+
+= search_form_for @q, url: pokemons_path do |f|
+  .div
+    = f.label :name_cont, '名前'
+    = f.search_field :name_cont
+  .div
+    = f.label :type_id_eq, 'タイプ'
+    = f.select :type_id_eq,
+               options_from_collection_for_select(Type.all, :id, :name, @q.type_id_eq),
+               :include_blank => 'ぜんぶ'
+  .div
+    = f.label :default_ability_id_eq, '能力'
+    = f.select :default_ability_id_eq,
+               options_from_collection_for_select(Ability.all, :id, :name, @q.default_ability_id_eq),
+               :include_blank => 'ぜんぶ'
+  .div
+    = f.label :mega_effects_pokemon_id_null, 'メガシンカ'
+    = f.select :mega_effects_pokemon_id_null,
+               options_for_select({'あり' => false, 'なし' => true}, @q.mega_effects_pokemon_id_null),
+               :include_blank => 'ぜんぶ'
+  .div
+    = button_to "検索", pokemons_path(format: "html"), :method => :get
+    = button_to "ダウンロード", pokemons_path(format: "csv"), :method => :get
+
+table
+  thead
+    tr
+      td ばんごう
+      td 名前
+      td
+      td タイプ
+      td 能力
+      td
+  tbody
+  - @pokemons.each do |p|
+    tr
+      td = p.dex
+      td = p.name
+      td = p.series
+      td = p.type.name
+      td = p.default_ability.name
+      td = p.changeable_abilities.pluck(:name).join(',')

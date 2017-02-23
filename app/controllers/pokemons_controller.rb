@@ -1,6 +1,7 @@
 class PokemonsController < ApplicationController
   def index
-    @pokemons = Pokemon.all
+    @q = Pokemon.ransack(params[:q])
+    @pokemons = @q.result(distinct: true)
 
     respond_to do |format|
       format.html
