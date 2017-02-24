@@ -24,6 +24,10 @@ h1
     = button_to "検索", pokemons_path(format: "html"), :method => :get
     = button_to "ダウンロード", pokemons_path(format: "csv"), :method => :get
 
+  .div
+    = page_entries_info @pokemons
+    = paginate @pokemons
+
 table
   thead
     tr
