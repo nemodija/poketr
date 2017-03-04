@@ -62,3 +62,5 @@ gem 'ransack'
 gem 'kaminari'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+
+gem 'select2-rails'
