@@ -6,7 +6,7 @@
         th.col-md-2
           = f.label :name_cont, '名前'
         td.col-md-4
-          = f.search_field :name_cont, { :style => 'width:100%' }
+          = f.search_field :name_cont, { :style => 'width:100%', :class => 'form-control' }
       tr
         th.col-md-2
           = f.label :type_id_eq, 'タイプ'
@@ -32,14 +32,16 @@
                      { :include_blank => 'ぜんぶ' },
                      { :style => 'width:100%' }
         td.col-md-3
-          = button_to "検索", pokemons_path(format: "html"), { :method => :get, :style => 'width:100%' }
+          = button_to "検索", pokemons_path(format: "html"),
+                      { :method => :get, :style => 'width:100%', :class => 'btn btn-primary' }
         td.col-md-3
-          = button_to "ダウンロード", pokemons_path(format: "csv"), { :method => :get, :style => 'width:100%' }
+          = button_to "ダウンロード", pokemons_path(format: "csv"),
+                      { :method => :get, :style => 'width:100%', :class => 'btn btn-primary' }
     .col-md-12.text-right
         = paginate @pokemons
 
   - if !@pokemons.size.zero?
-    table
+    table.table
       thead
         tr
           th.col-md-1 ばんごう
