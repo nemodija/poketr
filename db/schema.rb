@@ -10,43 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204142635) do
+ActiveRecord::Schema.define(version: 20170210132615) do
 
   create_table "abilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "note"
+    t.string   "code",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "mega_effects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",          null: false
     t.string   "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "mega_skill_up", null: false
+    t.integer  "pokemon_id",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["pokemon_id"], name: "index_mega_effects_on_pokemon_id", using: :btree
+  end
+
+  create_table "pokemon_abilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "pokemon_id",                 null: false
+    t.integer  "ability_id",                 null: false
+    t.boolean  "default",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["ability_id"], name: "index_pokemon_abilities_on_ability_id", using: :btree
+    t.index ["pokemon_id"], name: "index_pokemon_abilities_on_pokemon_id", using: :btree
   end
 
   create_table "pokemons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "dex"
-    t.string   "name"
-    t.integer  "type_id"
-    t.integer  "attack"
-    t.integer  "ability_id"
-    t.integer  "mega_effect_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["ability_id"], name: "index_pokemons_on_ability_id", using: :btree
-    t.index ["mega_effect_id"], name: "index_pokemons_on_mega_effect_id", using: :btree
+    t.integer  "dex",                      null: false
+    t.string   "name",                     null: false
+    t.string   "series"
+    t.integer  "attack",                   null: false
+    t.integer  "max_level_up", default: 0, null: false
+    t.integer  "type_id",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["type_id"], name: "index_pokemons_on_type_id", using: :btree
   end
 
+  create_table "type_strength_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "type_id",          null: false
+    t.integer  "strength_type_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["type_id"], name: "index_type_strength_types_on_type_id", using: :btree
+  end
+
+  create_table "type_weakness_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "type_id",          null: false
+    t.integer  "weakness_type_id", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["type_id"], name: "index_type_weakness_types_on_type_id", using: :btree
+  end
+
   create_table "types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",       null: false
+    t.string   "code",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "pokemons", "abilities"
-  add_foreign_key "pokemons", "mega_effects"
+  add_foreign_key "mega_effects", "pokemons"
   add_foreign_key "pokemons", "types"
 end

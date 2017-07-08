@@ -11,6 +11,8 @@
 #  updated_at    :datetime         not null
 #
 
-class MegaEffect < ApplicationRecord
-  belongs_to :pokemon
+require 'rails_helper'
+
+RSpec.describe MegaEffect, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

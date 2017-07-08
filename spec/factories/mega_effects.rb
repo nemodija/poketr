@@ -11,6 +11,7 @@
 #  updated_at    :datetime         not null
 #
 
-class MegaEffect < ApplicationRecord
-  belongs_to :pokemon
+FactoryGirl.define do
+  factory :mega_effect do
+  end
 end
