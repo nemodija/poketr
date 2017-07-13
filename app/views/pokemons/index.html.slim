@@ -17,22 +17,18 @@
                      { :style => 'width:100%' }
       tr
         th.col-md-2
-          = f.label :default_ability_id_eq, '能力'
+          = f.label :pokemon_abilities_ability_id_eq, '能力'
         td.col-md-4
-          = f.select :default_ability_id_eq,
-                     options_from_collection_for_select(Ability.all, :id, :name, @q.default_ability_id_eq),
+          = f.select :pokemon_abilities_ability_id_eq,
+                     options_from_collection_for_select(Ability.all, :id, :name, @q.pokemon_abilities_ability_id_eq),
                      { :include_blank => 'ぜんぶ' },
                      { :style => 'width:100%' }
         td.col-md-3
           .btn-group data-toggle='buttons'
-            - if @all_abilities
-              label.btn.btn-default.active
-                = check_box 'ex_q', 'all_abilities', {:checked => true}, true, false
-                | スキルチェンジ含む
-            - else
-              label.btn.btn-default
-                = check_box 'ex_q', 'all_abilities', {:checked => false}, true, false
-                | スキルチェンジ含む
+            = f.label :pokemon_abilities_default_true,
+                class: "btn btn-default #{@q.pokemon_abilities_default_true ? 'active' : ''}"
+              = f.check_box :pokemon_abilities_default_true, {checked: @q.pokemon_abilities_default_true}, true, false
+              | スキルチェンジ含まない
       tr
         th.col-md-2
           = f.label :mega_effects_pokemon_id_null, 'メガシンカ'
