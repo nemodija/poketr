@@ -1,5 +1,6 @@
 .container
   h1 Poketr
+  = link_to 'Signin with Google', user_google_omniauth_authorize_path
   = search_form_for @q, url: pokemons_path do |f|
     table.table
       tr
