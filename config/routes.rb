@@ -6,7 +6,7 @@
 
 Rails.application.routes.draw do
 
-  root :controller => 'pokemons', :action => 'index'
+  root to: redirect('/pokemons')
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"
