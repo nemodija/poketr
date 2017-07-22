@@ -15,6 +15,12 @@
                      options_from_collection_for_select(Type.all, :id, :name, @q.type_id_eq),
                      { :include_blank => 'ぜんぶ' },
                      { :style => 'width:100%' }
+        td.col-md-3
+          .btn-group data-toggle='buttons'
+            = f.label :type_weakness_types_id_not_null,
+                class: "btn btn-default #{@q.type_weakness_types_id_not_null ? 'active' : ''}"
+              = f.check_box :type_weakness_types_id_not_null, {checked: @q.type_weakness_types_id_not_null}, true, false
+              | あいてにゆうこう
       tr
         th.col-md-2
           = f.label :pokemon_abilities_ability_id_eq, '能力'
