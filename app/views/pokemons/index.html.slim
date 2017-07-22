@@ -54,14 +54,17 @@
               = sort_link @q, :dex, [:dex, :id], 'ばんごう', default_order: :desc
             th.col-md-4 colspan=2
               = sort_link @q, :name, [:name, :id], 'なまえ', default_order: :asc
+            th.col-md-1
+              = sort_link @q, :attack, [:attack, :id], '攻撃力', default_order: :asc
             th.col-md-2 タイプ
-            th.col-md-5 colspan=2 能力
+            th.col-md-4 colspan=2 能力
         tbody
         - @pokemons.each do |p|
           tr
             td = p.dex
             td = p.name
             td = p.series
+            td = p.attack
             td = p.type.name
             td = p.default_ability.name
             td = p.changeable_abilities.pluck(:name).join(',')
