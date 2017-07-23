@@ -15,6 +15,12 @@
                      options_from_collection_for_select(Type.all, :id, :name, @q.type_id_eq),
                      { :include_blank => 'ぜんぶ' },
                      { :style => 'width:100%' }
+        td.col-md-3
+          .btn-group data-toggle='buttons'
+            = f.label :type_weakness_types_id_not_null,
+                class: "btn btn-default #{@q.type_weakness_types_id_not_null ? 'active' : ''}"
+              = f.check_box :type_weakness_types_id_not_null, {checked: @q.type_weakness_types_id_not_null}, true, false
+              | あいてにゆうこう
       tr
         th.col-md-2
           = f.label :pokemon_abilities_ability_id_eq, '能力'
@@ -52,16 +58,22 @@
           tr
             th.col-md-1
               = sort_link @q, :dex, [:dex, :id], 'ばんごう', default_order: :desc
-            th.col-md-4 colspan=2
+            th.col-md-3 colspan=2
               = sort_link @q, :name, [:name, :id], 'なまえ', default_order: :asc
+            th.col-md-1
+              = sort_link @q, :max_level_up, [:max_level_up, :id], '最大Lv', default_order: :asc
+            th.col-md-1
+              = sort_link @q, :attack, [:attack, :id], '攻撃力', default_order: :asc
             th.col-md-2 タイプ
-            th.col-md-5 colspan=2 能力
+            th.col-md-4 colspan=2 能力
         tbody
         - @pokemons.each do |p|
           tr
             td = p.dex
             td = p.name
             td = p.series
+            td = 10 + p.max_level_up
+            td = p.attack
             td = p.type.name
             td = p.default_ability.name
             td = p.changeable_abilities.pluck(:name).join(',')
