@@ -15,8 +15,8 @@ class PokemonsController < ApplicationController
     ret = params.fetch(:q, {}).permit(
       :name_cont, :type_id_eq, :pokemon_abilities_ability_id_eq,
       :pokemon_abilities_default_true, :mega_effects_pokemon_id_null, s: [])
-    if params.fetch(:q, {}).include?(:type_weakness_types_id_not_null)
-      ret.merge!(type_weakness_types_id_eq: ret[:type_id_eq])
+    if params.fetch(:q, {}).include?(:type_type_strength_types_strength_type_id_not_null)
+      ret.merge!(type_type_strength_types_strength_type_id_eq: ret[:type_id_eq])
       ret.delete(:type_id_eq)
     end
     ret.merge!(s: ["dex asc", "id asc"]) if ret[:s].nil?
