@@ -25,6 +25,8 @@ class Pokemon < ApplicationRecord
   has_many :changeable_abilities, through: :changeable_pokemon_abilities, :source => :ability
 
   has_many :mega_effects
+
+  has_many :pokemon_users
  
   def mega_evolution?
     self.mega_effects.size > 0

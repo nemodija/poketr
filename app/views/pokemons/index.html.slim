@@ -57,8 +57,9 @@
         thead
           tr
             th.col-md-1
+            th.col-md-1
               = sort_link @q, :dex, [:dex, :id], 'ばんごう', default_order: :desc
-            th.col-md-3 colspan=2
+            th.col-md-2 colspan=2
               = sort_link @q, :name, [:name, :id], 'なまえ', default_order: :asc
             th.col-md-1
               = sort_link @q, :max_level_up, [:max_level_up, :id], '最大Lv', default_order: :asc
@@ -69,6 +70,7 @@
         tbody
         - @pokemons.each do |p|
           tr
+            td = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
             td = p.dex
             td = p.name
             td = p.series
@@ -77,3 +79,4 @@
             td = p.type.name
             td = p.default_ability.name
             td = p.changeable_abilities.pluck(:name).join(',')
+.modal.fade id="product-modal"
