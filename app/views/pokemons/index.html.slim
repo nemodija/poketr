@@ -59,10 +59,10 @@
             th.col-md-1
             th.col-md-1
               = sort_link @q, :dex, [:dex, :id], 'ばんごう', default_order: :desc
-            th.col-md-2 colspan=2
+            th.col-md-2
               = sort_link @q, :name, [:name, :id], 'なまえ', default_order: :asc
             th.col-md-1
-              = sort_link @q, :max_level_up, [:max_level_up, :id], '最大Lv', default_order: :asc
+              = sort_link @q, :level, [:level, :id], 'レベル', default_order: :asc
             th.col-md-1
               = sort_link @q, :attack, [:attack, :id], '攻撃力', default_order: :asc
             th.col-md-2 タイプ
@@ -71,12 +71,22 @@
         - @pokemons.each do |p|
           tr
             td = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
-            td = p.dex
-            td = p.name
-            td = p.series
-            td = 10 + p.max_level_up
-            td = p.attack
-            td = p.type.name
-            td = p.default_ability.name
-            td = p.changeable_abilities.pluck(:name).join(',')
+            td style="vertical-align: middle;"
+              = p.dex
+            td style="vertical-align: middle;"
+              = p.name
+              p.small style="display: inline;margin-left: 10px;"
+                = p.series
+            td style="vertical-align: middle;"
+              = p.level
+              small
+                |  / #{10 + p.max_level_up}
+            td style="vertical-align: middle;"
+              = p.attack
+            td style="vertical-align: middle;"
+              = p.type.name
+            td style="vertical-align: middle;"
+              = p.default_ability.name
+            td style="vertical-align: middle;"
+              = p.changeable_abilities.pluck(:name).join(',')
 .modal.fade id="product-modal"
