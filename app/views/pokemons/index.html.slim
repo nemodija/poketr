@@ -57,7 +57,6 @@
         thead
           tr
             th.col-md-1
-            th.col-md-1
               = sort_link @q, :dex, [:dex, :id], 'ばんごう', default_order: :desc
             th.col-md-2
               = sort_link @q, :name, [:name, :id], 'なまえ', default_order: :asc
@@ -67,10 +66,10 @@
               = sort_link @q, :attack, [:attack, :id], '攻撃力', default_order: :asc
             th.col-md-2 タイプ
             th.col-md-4 colspan=2 能力
+            th.col-md-1
         tbody
         - @pokemons.each do |p|
           tr
-            td = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
             td style="vertical-align: middle;"
               = p.dex
             td style="vertical-align: middle;"
@@ -89,4 +88,7 @@
               = p.default_ability.name
             td style="vertical-align: middle;"
               = p.changeable_abilities.pluck(:name).join(',')
+            td
+              - if user_signed_in?
+                = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
 .modal.fade id="product-modal"
