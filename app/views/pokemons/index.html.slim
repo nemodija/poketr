@@ -65,7 +65,7 @@
             th.col-md-1
               = sort_link @q, :attack, [:attack, :id], '攻撃力', default_order: :asc
             th.col-md-2 タイプ
-            th.col-md-4 colspan=2 能力
+            th.col-md-4 能力
             th.col-md-1
         tbody
         - @pokemons.each do |p|
@@ -85,9 +85,13 @@
             td style="vertical-align: middle;"
               = p.type.name
             td style="vertical-align: middle;"
-              = p.default_ability.name
-            td style="vertical-align: middle;"
-              = p.changeable_abilities.pluck(:name).join(',')
+              - p.pokemon_abilities.each do |a|
+                - if a.default
+                  span.label.label-success style=("margin: 2px;")
+                    = a.ability.name
+                - else
+                  span.label.label-default style=("margin: 2px;")
+                    = a.ability.name
             td
               - if user_signed_in?
                 = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
