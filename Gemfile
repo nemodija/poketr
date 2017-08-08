@@ -41,6 +41,11 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 
 group :development do
@@ -50,6 +55,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -64,3 +72,7 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 gem 'select2-rails'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'

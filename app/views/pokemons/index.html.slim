@@ -1,5 +1,5 @@
-.container
-  h1 Poketr
+= render 'header'
+.container style="padding-top: 60px;"
   = search_form_for @q, url: pokemons_path do |f|
     table.table
       tr

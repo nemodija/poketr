@@ -1,0 +1,13 @@
+nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      a.navbar-brand.main-title Poketr
+    .collapse.navbar-collapse
+      - if user_signed_in?
+        .navbar-text.navbar-right
+          = link_to "Logout", destroy_user_session_path, method: :delete
+        .navbar-text.navbar-right
+          | #{current_user.email}
+      - else
+        .navbar-text.navbar-right
+          = link_to 'Signin with Google', user_google_omniauth_authorize_path

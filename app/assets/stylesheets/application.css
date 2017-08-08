@@ -14,3 +14,7 @@
  *= require_tree .
  *= require_self
  */
+
+.main-title {
+  font-family: 'Josefin Sans', sans-serif;
+}
