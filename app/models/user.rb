@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: %i(google)
 
+  has_many :pokemon_users
+
   protected
   def self.find_for_google(auth)
     user = User.find_by(email: auth.info.email)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714144633) do
+ActiveRecord::Schema.define(version: 20170728142156) do
 
   create_table "abilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20170714144633) do
     t.datetime "updated_at",                 null: false
     t.index ["ability_id"], name: "index_pokemon_abilities_on_ability_id", using: :btree
     t.index ["pokemon_id"], name: "index_pokemon_abilities_on_pokemon_id", using: :btree
+  end
+
+  create_table "pokemon_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "pokemon_id",             null: false
+    t.integer  "user_id",                null: false
+    t.integer  "level",      default: 1, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["pokemon_id"], name: "index_pokemon_users_on_pokemon_id", using: :btree
+    t.index ["user_id"], name: "index_pokemon_users_on_user_id", using: :btree
   end
 
   create_table "pokemons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
