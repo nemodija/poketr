@@ -64,8 +64,9 @@
               = sort_link @q, :level, [:level, :id], 'レベル', default_order: :asc
             th.col-md-1
               = sort_link @q, :attack, [:attack, :id], '攻撃力', default_order: :asc
-            th.col-md-2 タイプ
-            th.col-md-4 能力
+            th.col-md-1 タイプ
+            th.col-md-3 能力
+            th.col-md-2 メガシンカ
             th.col-md-1
         tbody
         - @pokemons.each do |p|
@@ -92,6 +93,10 @@
                 - else
                   span.label.label-default style=("margin: 2px;")
                     = a.ability.name
+            td style="vertical-align: middle;"
+              - p.mega_effects.each do |m|
+                span.label.label-default style=("margin: 2px;")
+                  = m.name
             td
               - if user_signed_in?
                 = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
