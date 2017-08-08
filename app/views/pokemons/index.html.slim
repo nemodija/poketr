@@ -88,15 +88,17 @@
             td style="vertical-align: middle;"
               - p.pokemon_abilities.each do |a|
                 - if a.default
-                  span.label.label-success style=("margin: 2px;")
+                  span.label.label-success
                     = a.ability.name
                 - else
-                  span.label.label-default style=("margin: 2px;")
+                  span.label.label-default
                     = a.ability.name
+                = " "
             td style="vertical-align: middle;"
               - p.mega_effects.each do |m|
-                span.label.label-default style=("margin: 2px;")
+                span.label.label-default
                   = m.name
+                = " "
             td
               - if user_signed_in?
                 = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
