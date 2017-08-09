@@ -3,7 +3,7 @@ class PokemonsController < ApplicationController
   def index
     @q = Pokemon.ransack(params[:q])
     @pokemons = Pokemon.with_user(current_user).
-      ransack(search_params).result.order(order_str)
+      ransack(search_params).result.distinct.order(order_str)
     respond_to do |format|
       format.html do
         @pokemons = @pokemons.page(params[:page])
