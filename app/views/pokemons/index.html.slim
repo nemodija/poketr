@@ -88,18 +88,22 @@
             td style="vertical-align: middle;"
               - p.pokemon_abilities.each do |a|
                 - if a.default
-                  span.label.label-success
+                  span.label.label-success data-toggle="tooltip" title="#{a.ability.note}"
                     = a.ability.name
                 - else
-                  span.label.label-default
+                  span.label.label-default data-toggle="tooltip" title="#{a.ability.note}"
                     = a.ability.name
                 = " "
             td style="vertical-align: middle;"
               - p.mega_effects.each do |m|
-                span.label.label-default
+                span.label.label-default data-toggle="tooltip" title="#{m.note}"
                   = m.name
                 = " "
             td
               - if user_signed_in?
                 = link_to "edit", edit_pokemon_user_path(p.id), remote: true, class: "btn btn-default"
 .modal.fade id="product-modal"
+javascript:
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
