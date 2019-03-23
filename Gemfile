@@ -73,6 +73,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'select2-rails'
 
-gem 'devise'
+gem 'devise', '>= 4.4.3'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
