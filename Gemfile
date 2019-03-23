@@ -43,7 +43,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'pry-rails'
-  gem 'pry-doc'
+  gem 'pry-doc', '>= 0.11.1'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
 end
