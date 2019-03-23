@@ -76,5 +76,3 @@ gem 'select2-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-
-gem 'execjs'
