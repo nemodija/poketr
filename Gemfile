@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', '0.12.3', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -43,7 +43,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'pry-rails'
-  gem 'pry-doc'
+  gem 'pry-doc', '>= 0.11.1'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
 end
@@ -73,6 +73,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'select2-rails'
 
-gem 'devise'
+gem 'devise', '>= 4.4.3'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
