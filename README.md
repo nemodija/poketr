@@ -114,3 +114,43 @@ heroku info
   # Stack:          heroku-18
   # Web URL:        https://poketr-app.herokuapp.com/
 ~~~
+
+## Login with google OAuth
+
+### create oauth config
+
+- https://console.developers.google.com/apis/credentials
+- プロジェクトの選択 > 新しいプロジェクト
+  - プロジェクト名: (任意)
+- 認証情報 > 認証情報を作成 > OAuthクライアントID
+- OAuthクライアントIDの作成 > 同意画面を設定
+  - (OAuthクライアントIDを作成するには、まず同意画面でサービス名を設定する必要があるため)
+- 認証情報 > OAuth同意画面
+  - アプリケーション名: (任意)
+  - 承認済みドメイン: `poketr-app.herokuapp.com`
+  - [アプリケーションホームページ]リンク: `https://poketr-app.herokuapp.com`
+  - [アプリケーションプライバシーポリシー]リンク: `https://poketr-app.herokuapp.com`
+- OAuthクライアントIDの作成
+  - アプリケーションの種類: ウェブアプリケーション
+  - 名前: (任意)
+  - 承認済みのJavascript生成元: `https://poketr-app.herokuapp.com`
+  - 承認済みリダイレクトURL: `https://poketr-app.herokuapp.com/users/auth/google/callback`
+- OAuthクライアント
+  - クライアントID、クライアントシークレットが発行されているのでコピー
+
+### enabling to Google+ API
+
+- https://console.developers.google.com/apis/library/plus.googleapis.com?project=poketr-oauth
+- 有効にする
+
+### add config
+
+- クライアントID、クライアントシークレットを設定
+
+```sh
+# クライアントID
+heroku config:set GOOGLE_APP_ID=123456789012-1234567890abcdefghijklmnopqrstuv.apps.googleusercontent.com
+
+# クライアントシークレット
+heroku config:set GOOGLE_APP_SECRET=4**********************O
+```
